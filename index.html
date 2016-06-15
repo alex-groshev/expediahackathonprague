@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TOP Rev Team</title>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="script.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+		<style lang="text/css">
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">TOP Rev Team - Rev Booster</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<!--					
+										<ul class="nav navbar-nav">
+											<li class="active"><a href="#">Home</a></li>
+											<li><a href="#about">About</a></li>
+										</ul>
+					-->
+				</div>
+			</div>
+		</nav>
+
+		<!--  POS / Region -->
+		<div class="container">
+			<div class="page-header" style="margin-top: 10px;">
+				<h2>
+					<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;POS / Region
+				</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>POS</th>
+								<th>Region</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Expedia (1)</td>
+								<td>Prague (2872)</td>
+								<td><button onclick="javascript: drawRate('1', '2872');" type="button" class="btn btn-xs btn-primary">Display</button></td>
+							</tr>
+							<tr>
+								<td>Expedia.co.uk (3)</td>
+								<td>Prague (2872)</td>
+								<td><button onclick="javascript: drawRate('3', '2872');"  type="button" class="btn btn-xs btn-primary">Display</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<!--  Charts -->
+		<div class="container" id="chartsDiv">
+			<div class="page-header valuesContainer" style="margin-top: 10px;">
+				<h2>
+					<span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;Values
+				</h2>
+			</div>
+			<div class="col-sm-4 valuesContainer">
+				<div class="panel panel-success" id="ratePanel">
+					<div class="panel-heading">
+						<h3 class="panel-title">Rate AVG</h3>
+					</div>
+					<div class="panel-body">
+						<canvas id="rate_avg_chart" class="market_chart" width="400" height="400"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 valuesContainer">
+				<div class="panel panel-primary" id="ratePanel">
+					<div class="panel-heading">
+						<h3 class="panel-title">Rank AVG</h3>
+					</div>
+					<div class="panel-body">
+						<canvas id="rank_avg_chart" class="market_chart" width="400" height="400"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 valuesContainer">
+				<div class="panel panel-warning" id="ratePanel">
+					<div class="panel-heading">
+						<h3 class="panel-title">Compensation AVG</h3>
+					</div>
+					<div class="panel-body">
+						<canvas id="comp_avg_chart" class="market_chart" width="400" height="400"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--  Actions -->
+		<div class="container" id="actionsDiv">
+			<div class="page-header actionsContainer" style="margin-top: 10px;">
+				<h2>
+					<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp;Take Action!
+				</h2>
+			</div>
+			<div class="col-lg-12 actionsContainer">
+				<button type="button" class="btn btn-lg btn-primary">Action 1</button>
+				<button type="button" class="btn btn-lg btn-primary">Action 2</button>
+			</div>
+		</div>
+
+
+		<!--  Error Bar -->
+		<div class="container" style="margin-top: 30px;">
+			<div class="alert alert-warning" role="alert" id="output"></div>
+		</div>
+	</body>
+</html>
