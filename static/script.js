@@ -1,31 +1,87 @@
 $(document).ready(function () {
+	$(".posContainer").hide();
 	$(".valuesContainer").hide();
 	$(".actionsContainer").hide();
 	$("#output").hide();
+	
+	drawPOS();
 });
 
 
-//
 
 
-function drawRate(posID, regionID) {
+function drawPOS() {
+	var hotelID = 15240008;
+	var username = "EQCRateGain";
+	var password = "kaB7tRuP";
+	var host = "https://services.expediapartnercentral.com";
+
+
+	$.ajax({
+		type: "GET",
+		url: host + '/top-tpids/lodgingSort/v1/hops/HopsTopTpidsAndRegions',
+		data: {
+			'hotelId': hotelID
+		},
+		headers: {
+			'Authorization': 'Basic ' + window.btoa(username + ':' + password),
+			'Accept': 'application/json'
+		},
+		dataType: 'json',
+		success: function (data) {
+
+			for (var i in data.hopsTpidsList) {
+
+				var posID = data.hopsTpidsList[i].tpid;
+
+				for (var j in data.hopsTpidsList[i].sortedRegionList) {
+
+					var regionId = data.hopsTpidsList[i].sortedRegionList[j];
+
+					var endpoint = "http://localhost:5000/names/pos/" + posID + "/region/" + regionId;
+
+					$.ajax({
+						type: "GET",
+						url: endpoint,
+						success: function (our_data) {
+
+							var jsonData = JSON.parse(our_data);
+							
+							$("#posList").append(writePOSRow(posID, regionId, jsonData.pos, jsonData.region));
+							$(".wait").hide();
+							$(".posContainer").show();
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+							$("#output").show();
+							$("#output").html('<strong>ERROR</strong>:&nbsp;' + jqXHR.responseText + " - " + textStatus + " - " + JSON.stringify(errorThrown));
+						}
+					});
+				}
+			}
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			$("#output").show();
+			$("#output").html('<strong>ERROR</strong>:&nbsp;' + jqXHR.responseText + " - " + textStatus + " - " + JSON.stringify(errorThrown));
+		}
+	});
+
+}
+
+
+
+
+function drawRate(posID, regionID, dateStr) {
 	$("#output").hide();
-	
-//	var fakeData = JSON.parse("[{\"searchDate\": \"2016-06-01\", \"avgRank\": \"320.3\", \"avgRate\": \"120.3\", \"avgComp\": \"20.3\"}, {\"searchDate\": \"2016-06-02\", \"avgRank\": \"32.3\", \"avgRate\": \"121.3\", \"avgComp\": \"25.3\"}]");
-//	showData(fakeData);
-//	$(".actionsContainer").show();
-//	return;
 
 	var hotelID = 15240008;
-	var endpoint = "http://localhost:5000/series/hotel/" + hotelID + "/pos/" + posID + "/region/" + regionID;
+	var endpoint = "http://localhost:5000/series/hotel/" + hotelID + "/pos/" + posID + "/region/" + regionID + "/searchDate/" + dateStr;
 
 	$.ajax({
 		type: "GET",
 		url: endpoint,
-		//crossDomain:true,
 		success: function (data) {
-		    var jsonVL = JSON.parse(data);
-		    //alert(JSON.stringify(jsonVL));
+//			var jsonVL = JSON.parse(data);
+//			alert(JSON.stringify(jsonVL));
 			showData(JSON.parse(data));
 			$(".actionsContainer").show();
 		},
@@ -38,7 +94,6 @@ function drawRate(posID, regionID) {
 }
 
 
-[{"metrics": ["avgRank", "avgPrice", "avgComp"], "searchDate": "2016-06-01", "values": [15.0, 100.0, 30.0]}]
 
 
 /*
@@ -50,17 +105,21 @@ function showData(dataSerie) {
 	var avgRankList = new Array();
 	var labelList = new Array();
 	for (var i in dataSerie) {
-		//alert(dataSerie[i].searchDate.toString());
-		labelList[i] = dataSerie[i].searchDate;
-        //alert(dataSerie[i].values.toString());
-		avgRankList[i] = parseFloat(dataSerie[i].values[0]);
-		avgRateList[i] = parseFloat(dataSerie[i].values[1]);
-		avgCompList[i] = parseFloat(dataSerie[i].values[2]);
+//		labelList[i] = dataSerie[i].searchDate;
+//
+//		avgRankList[i] = parseFloat(dataSerie[i].values[0]);
+//		avgRateList[i] = parseFloat(dataSerie[i].values[1]);
+//		avgCompList[i] = parseFloat(dataSerie[i].values[2]);
+		labelList[i] = dataSerie[i].checkinDate;
+
+		avgRankList[i] = parseFloat(dataSerie[i].avgRank);
+		avgRateList[i] = parseFloat(dataSerie[i].avgPrice);
+		avgCompList[i] = parseFloat(dataSerie[i].avgComp);
 	}
 
 
 	$(".valuesContainer").show();
-	drawBarChart(labelList, avgRateList, "rate_avg_chart");
+	drawLineChart(labelList, avgRateList, "rate_avg_chart");
 	drawLineChart(labelList, avgRankList, "rank_avg_chart");
 	drawLineChart(labelList, avgCompList, "comp_avg_chart");
 
@@ -106,18 +165,18 @@ function drawBarChart(labelList, dataList, canvasID) {
 
 
 function drawLineChart(labelList, dataList, canvasID) {
-	
+
 	// average calculation
 	var avg = 0;
 	var counter = 0;
 	for (var i in dataList) {
 		avg += dataList[i];
-		
+
 		counter++;
 	}
-	
+
 	avg = avg / counter;
-	
+
 	var avgList = new Array();
 	for (var i in dataList) {
 		avgList[i] = avg;
@@ -183,4 +242,37 @@ function drawLineChart(labelList, dataList, canvasID) {
 		}
 	});
 
+}
+
+
+
+
+function writePOSRow(posID, regionID, posName, regionName) {
+
+	var string = "<tr><td>" + posName + " (" + posID + ")</td>";
+	string += "<td>" + regionName + " (" + regionID + ")</td><td>";
+
+	string += "<button onclick=\"javascript: drawRate('";
+	string += "'" + posID + "', '" + regionID + "', '2016-06-15'";
+	string += ");\"";
+	string += "type='button' class='btn btn-xs btn-primary'>2016-06-15</button>&nbsp;";
+
+	string += "<button onclick=\"javascript: drawRate('";
+	string += "'" + posID + "', '" + regionID + "', '2016-06-14'";
+	string += ");\"";
+	string += "type='button' class='btn btn-xs btn-default'>2016-06-14</button>&nbsp;";
+
+	string += "<button onclick=\"javascript: drawRate('";
+	string += "'" + posID + "', '" + regionID + "', '2016-06-13'";
+	string += ");\"";
+	string += "type='button' class='btn btn-xs btn-default'>2016-06-13</button>&nbsp;";
+
+	string += "<button onclick=\"javascript: drawRate('";
+	string += "'" + posID + "', '" + regionID + "', '2016-06-12'";
+	string += ");\"";
+	string += "type='button' class='btn btn-xs btn-default'>2016-06-12</button>";
+
+	string += "</td></tr>";
+
+	return string;
 }

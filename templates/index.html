@@ -20,43 +20,44 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<!--					
-										<ul class="nav navbar-nav">
-											<li class="active"><a href="#">Home</a></li>
-											<li><a href="#about">About</a></li>
-										</ul>
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="#about">About</a></li>
+						</ul>
 					-->
 				</div>
 			</div>
 		</nav>
 
+		
+		<!--  Wait -->
+		<div class="container">
+			<div class="page-header posContainer" style="margin-top: 10px;">
+				<h2>
+					<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;Retrieving Data from Expedia
+				</h2>
+			</div>
+		</div>
+		
+		
 		<!--  POS / Region -->
 		<div class="container">
-			<div class="page-header" style="margin-top: 10px;">
+			<div class="page-header posContainer" style="margin-top: 10px;">
 				<h2>
 					<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;POS / Region
 				</h2>
 			</div>
-			<div class="row">
+			<div class="row posContainer">
 				<div class="col-md-12">
 					<table class="table">
 						<thead>
 							<tr>
 								<th>POS</th>
 								<th>Region</th>
+								<th></th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>Expedia (1)</td>
-								<td>Prague (2872)</td>
-								<td><button onclick="javascript: drawRate('1', '2872');" type="button" class="btn btn-xs btn-primary">Display</button></td>
-							</tr>
-							<tr>
-								<td>Expedia.co.uk (3)</td>
-								<td>Prague (2872)</td>
-								<td><button onclick="javascript: drawRate('3', '2872');"  type="button" class="btn btn-xs btn-primary">Display</button></td>
-							</tr>
-						</tbody>
+						<tbody id="posList"></tbody>
 					</table>
 				</div>
 			</div>
