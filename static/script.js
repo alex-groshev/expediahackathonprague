@@ -252,22 +252,22 @@ function writePOSRow(posID, regionID, posName, regionName) {
 	var string = "<tr><td>" + posName + " (" + posID + ")</td>";
 	string += "<td>" + regionName + " (" + regionID + ")</td><td>";
 
-	string += "<button onclick=\"javascript: drawRate('";
+	string += "<button onclick=\"javascript: drawRate(";
 	string += "'" + posID + "', '" + regionID + "', '2016-06-15'";
 	string += ");\"";
 	string += "type='button' class='btn btn-xs btn-primary'>2016-06-15</button>&nbsp;";
 
-	string += "<button onclick=\"javascript: drawRate('";
+	string += "<button onclick=\"javascript: drawRate(";
 	string += "'" + posID + "', '" + regionID + "', '2016-06-14'";
 	string += ");\"";
 	string += "type='button' class='btn btn-xs btn-default'>2016-06-14</button>&nbsp;";
 
-	string += "<button onclick=\"javascript: drawRate('";
+	string += "<button onclick=\"javascript: drawRate(";
 	string += "'" + posID + "', '" + regionID + "', '2016-06-13'";
 	string += ");\"";
 	string += "type='button' class='btn btn-xs btn-default'>2016-06-13</button>&nbsp;";
 
-	string += "<button onclick=\"javascript: drawRate('";
+	string += "<button onclick=\"javascript: drawRate(";
 	string += "'" + posID + "', '" + regionID + "', '2016-06-12'";
 	string += ");\"";
 	string += "type='button' class='btn btn-xs btn-default'>2016-06-12</button>";
