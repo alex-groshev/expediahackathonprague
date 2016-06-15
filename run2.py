@@ -20,6 +20,16 @@ app = Flask(__name__, static_url_path='')
 def homepage():
     return render_template('index.html')
 
+@app.route("/map")
+def map_view():
+    return render_template('map.html')
+
+@app.route("/hotels.json")
+def inventory():
+    # get the json
+    json_data=open('static/data.json').read()
+    data = json.loads(json_data)
+    return json.dumps(data, separators=(',', ':'))
 
 @app.route("/series/hotel/<hotelId>/pos/<tpId>/region/<regionId>/searchDate/<searchDate>")
 def series(hotelId, tpId, regionId, searchDate):
