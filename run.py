@@ -19,14 +19,6 @@ app = Flask(__name__, static_url_path='')
 @app.route("/")
 def homepage():
     return render_template('index.html')
-    #return app.send_static_file('index.html')
-
-    # collection = get_db().timeseries
-    # query = [
-    #     { "$match" : { "metric" : "avgPrice" } },
-    #     { "$group": { "_id": "$tpid", "stdevAvgPrice": { "$stdDevSamp": "$value" } } }
-    # ]
-    # return str(list(collection.aggregate(query)))
 
 
 @app.route("/series/hotel/<hotelId>/pos/<tpId>/region/<regionId>")
@@ -40,7 +32,7 @@ def series(hotelId, tpId, regionId):
         { "$sort" : { "searchDate": 1 } }
     ]
 
-    return remove_u(str(list(collection.aggregate(query))))
+    return remove_u(str(list(collection.aggregate(query)))).replace("'", '"')
 
 
 if __name__ == "__main__":

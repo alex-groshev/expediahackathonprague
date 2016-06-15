@@ -5,6 +5,7 @@ $(document).ready(function () {
 });
 
 
+//
 
 
 function drawRate(posID, regionID) {
@@ -21,9 +22,11 @@ function drawRate(posID, regionID) {
 	$.ajax({
 		type: "GET",
 		url: endpoint,
-		crossDomain:true,
+		//crossDomain:true,
 		success: function (data) {
-			showData(data);
+		    var jsonVL = JSON.parse(data);
+		    //alert(JSON.stringify(jsonVL));
+			showData(JSON.parse(data));
 			$(".actionsContainer").show();
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
@@ -35,6 +38,8 @@ function drawRate(posID, regionID) {
 }
 
 
+[{"metrics": ["avgRank", "avgPrice", "avgComp"], "searchDate": "2016-06-01", "values": [15.0, 100.0, 30.0]}]
+
 
 /*
  * PRIVATE
@@ -45,8 +50,9 @@ function showData(dataSerie) {
 	var avgRankList = new Array();
 	var labelList = new Array();
 	for (var i in dataSerie) {
+		//alert(dataSerie[i].searchDate.toString());
 		labelList[i] = dataSerie[i].searchDate;
-
+        //alert(dataSerie[i].values.toString());
 		avgRankList[i] = parseFloat(dataSerie[i].values[0]);
 		avgRateList[i] = parseFloat(dataSerie[i].values[1]);
 		avgCompList[i] = parseFloat(dataSerie[i].values[2]);
