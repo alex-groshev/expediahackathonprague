@@ -10,20 +10,20 @@ $(document).ready(function () {
 function drawRate(posID, regionID) {
 	$("#output").hide();
 	
-	var fakeData = JSON.parse("[{\"searchDate\": \"2016-06-01\", \"avgRank\": \"320.3\", \"avgRate\": \"120.3\", \"avgComp\": \"20.3\"}, {\"searchDate\": \"2016-06-02\", \"avgRank\": \"32.3\", \"avgRate\": \"121.3\", \"avgComp\": \"25.3\"}]");
-	showData(fakeData);
-	$(".actionsContainer").show();
-	return;
+//	var fakeData = JSON.parse("[{\"searchDate\": \"2016-06-01\", \"avgRank\": \"320.3\", \"avgRate\": \"120.3\", \"avgComp\": \"20.3\"}, {\"searchDate\": \"2016-06-02\", \"avgRank\": \"32.3\", \"avgRate\": \"121.3\", \"avgComp\": \"25.3\"}]");
+//	showData(fakeData);
+//	$(".actionsContainer").show();
+//	return;
 
 	var hotelID = 15240008;
-	var endpoint = "http://127.0.0.1:5000/series/hotel/" + hotelID + "/pos/" + posID + "/region/" + regionID;
+	var endpoint = "http://localhost:5000/series/hotel/" + hotelID + "/pos/" + posID + "/region/" + regionID;
 
 	$.ajax({
 		type: "GET",
 		url: endpoint,
+		crossDomain:true,
 		success: function (data) {
 			showData(data);
-			
 			$(".actionsContainer").show();
 		},
 		error: function (jqXHR, textStatus, errorThrown) {

@@ -1,7 +1,6 @@
 import sys
 import json
-from flask import Flask
-from flask import json
+from flask import Flask, request, render_template, json , send_from_directory
 from pymongo import MongoClient
 from bson.son import SON
 
@@ -15,16 +14,19 @@ def remove_u(source):
     return source.replace("u'", "'")
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 @app.route("/")
-def hello():
-    collection = get_db().timeseries
-    query = [
-        { "$match" : { "metric" : "avgPrice" } },
-        { "$group": { "_id": "$tpid", "stdevAvgPrice": { "$stdDevSamp": "$value" } } }
-    ]
-    return str(list(collection.aggregate(query)))
+def homepage():
+    return render_template('index.html')
+    #return app.send_static_file('index.html')
+
+    # collection = get_db().timeseries
+    # query = [
+    #     { "$match" : { "metric" : "avgPrice" } },
+    #     { "$group": { "_id": "$tpid", "stdevAvgPrice": { "$stdDevSamp": "$value" } } }
+    # ]
+    # return str(list(collection.aggregate(query)))
 
 
 @app.route("/series/hotel/<hotelId>/pos/<tpId>/region/<regionId>")
