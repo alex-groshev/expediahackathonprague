@@ -13,6 +13,11 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function getRandomColor() {
+  var colors = ['#FF0000', '#00FF00', '#FFFF00'];
+  return colors[getRandomInt(0,2)];
+}
+
 var firstPlace;
 var secondPlace;
 var thirdPlace;
@@ -78,7 +83,7 @@ function initialize() {
   var map = new google.maps.Map(document.getElementById('map-canvas'), {
     //mapTypeId: google.maps.MapTypeId.ROADMAP, zoom: 14
     center: {lat: coordLat, lng: coordLong},
-    zoom: 13
+    zoom: 15
   });
 
   infowindow = new google.maps.InfoWindow();
@@ -87,7 +92,7 @@ function initialize() {
   var input = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  map.setOptions({draggable: false});
+  //map.setOptions({draggable: false});
   var jsonURL = "data.json?lat="+coordLat+"&long="+coordLong;
 
 
@@ -100,6 +105,16 @@ function initialize() {
         hid: data[i].name,
         title: data[i].name,
         position: {lat: data[i].gps.latitude, lng: data[i].gps.longitude}
+      });
+      var circle = new google.maps.Circle({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: getRandomColor(),
+        fillOpacity: 0.35,
+        map: map,
+        center: {lat: data[i].gps.latitude, lng: data[i].gps.longitude},
+        radius: getRandomInt(1,8) * 100
       });
       google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(this.title);
