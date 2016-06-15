@@ -1,0 +1,231 @@
+﻿CountryID|LanguageCode|CountryName|CountryCode|Transliteration|ContinentID
+76|en_US|Honduras|HN|Honduras|6023181
+98|en_US|Lebanon|LB|Lebanon|6023182
+104|en_US|Macau|MO|Macau|6023099
+124|en_US|Myanmar|MM|Myanmar|6023099
+127|en_US|Nepal|NP|Nepal|6023099
+142|en_US|Panama|PA|Panama|6023181
+150|en_US|Reunion|RE|Reunion|6023185
+153|en_US|Russia|RU|Russia|6022967
+154|en_US|Rwanda|RW|Rwanda|6023185
+156|en_US|Sao Tome and Principe|ST|Sao Tome and Principe|6023185
+158|en_US|Senegal|SN|Senegal|6023185
+159|en_US|Seychelles|SC|Seychelles|6023185
+8|en_US|Argentina|AR|Argentina|6023117
+15|en_US|Bangladesh|BD|Bangladesh|6023099
+18|en_US|Belize|BZ|Belize|6023181
+21|en_US|Bolivia|BO|Bolivia|6023117
+23|en_US|Brazil|BR|Brazil|6023117
+25|en_US|Brunei|BN|Brunei|6023099
+38|en_US|Colombia|CO|Colombia|6023117
+51|en_US|Ecuador|EC|Ecuador|6023117
+53|en_US|El Salvador|SV|El Salvador|6023181
+160|en_US|Sierra Leone|SL|Sierra Leone|6023185
+167|en_US|Sri Lanka|LK|Sri Lanka|6023099
+171|en_US|Suriname|SR|Suriname|6023117
+172|en_US|Swaziland|SZ|Swaziland|6023185
+177|en_US|Tanzania|TZ|Tanzania|6023185
+179|en_US|Togo|TG|Togo|6023185
+193|en_US|Venezuela|VE|Venezuela|6023117
+194|en_US|Vietnam|VN|Vietnam|6023099
+77|en_US|Hong Kong|HK|Hong Kong|6023099
+78|en_US|Hungary|HU|Hungary|6022967
+80|en_US|India|IN|India|6023099
+87|en_US|Cote d'Ivoire|CI|Cote d'Ivoire|6023185
+89|en_US|Japan|JP|Japan|6023099
+91|en_US|Kazakhstan|KZ|Kazakhstan|6023099
+94|en_US|South Korea|KR|South Korea|6023099
+95|en_US|Kuwait|KW|Kuwait|6023182
+96|en_US|Laos|LA|Laos|6023099
+103|en_US|Luxembourg|LU|Luxembourg|6022967
+107|en_US|Malawi|MW|Malawi|6023185
+109|en_US|Maldives|MV|Maldives|6023099
+110|en_US|Mali|ML|Mali|6023185
+111|en_US|Malta|MT|Malta|6022967
+112|en_US|Northern Mariana Islands|MP|Northern Mariana Islands|6023180
+6051403|en_US|Montenegro|ME|Montenegro|6022967
+6143084|en_US|Bonaire, Sint Eustatius and Saba|BQ|Bonaire, Sint Eustatius and Saba|6022969
+6143269|en_US|Curacao|CW|Curacao|6022969
+6143274|en_US|Sint Maarten|SX|Sint Maarten|6022969
+6190474|en_US|US Minor Outlying Islands|UM|US Minor Outlying Islands|6023180
+114|en_US|Mauritania|MR|Mauritania|6023185
+115|en_US|Mauritius|MU|Mauritius|6023185
+116|en_US|Mayotte|YT|Mayotte|6023185
+117|en_US|Mexico|MX|Mexico|6023181
+118|en_US|Federated States of Micronesia|FM|Federated States of Micronesia|6023180
+120|en_US|Monaco|MC|Monaco|6022967
+122|en_US|Morocco|MA|Morocco|6023185
+123|en_US|Mozambique|MZ|Mozambique|6023185
+125|en_US|Namibia|NA|Namibia|6023185
+126|en_US|Nauru|NR|Nauru|6023180
+129|en_US|Netherlands|NL|Netherlands|6022967
+131|en_US|New Caledonia|NC|New Caledonia|6023180
+133|en_US|New Zealand|NZ|New Zealand|6023180
+134|en_US|Nicaragua|NI|Nicaragua|6023181
+135|en_US|Niger|NE|Niger|6023185
+136|en_US|Nigeria|NG|Nigeria|6023185
+137|en_US|Norfolk Island|NF|Norfolk Island|6023180
+143|en_US|Paraguay|PY|Paraguay|6023117
+144|en_US|Peru|PE|Peru|6023117
+145|en_US|Philippines|PH|Philippines|6023099
+146|en_US|Poland|PL|Poland|6022967
+147|en_US|Portugal|PT|Portugal|6022967
+149|en_US|Qatar|QA|Qatar|6023182
+151|en_US|Romania|RO|Romania|6022967
+157|en_US|Saudi Arabia|SA|Saudi Arabia|6023182
+3|en_US|Algeria|DZ|Algeria|6023185
+5|en_US|Angola|AO|Angola|6023185
+6|en_US|Anguilla|AI|Anguilla|6022969
+7|en_US|Antigua and Barbuda|AG|Antigua and Barbuda|6022969
+9|en_US|Aruba|AW|Aruba|6022969
+11|en_US|Austria|AT|Austria|6022967
+13|en_US|Bahamas|BS|Bahamas|6022969
+16|en_US|Barbados|BB|Barbados|6022969
+17|en_US|Belgium|BE|Belgium|6022967
+19|en_US|Benin|BJ|Benin|6023185
+20|en_US|Bermuda|BM|Bermuda|6022969
+22|en_US|Botswana|BW|Botswana|6023185
+26|en_US|Bulgaria|BG|Bulgaria|6022967
+27|en_US|Burkina Faso|BF|Burkina Faso|6023185
+28|en_US|Burundi|BI|Burundi|6023185
+29|en_US|Cambodia|KH|Cambodia|6023099
+30|en_US|Cameroon|CM|Cameroon|6023185
+11107|en_US|Greenland|GL|Greenland|500001
+11702|en_US|Bouvet Island|BV|Bouvet Island|11700
+11712|en_US|French Southern and Antarctic Territories|TF|French Southern and Antarctic Territories|11700
+11713|en_US|Heard and McDonald Islands|HM|Heard and McDonald Islands|11700
+11719|en_US|St. Pierre and Miquelon|PM|St. Pierre and Miquelon|500001
+11398|en_US|Armenia|AM|Armenia|6022967
+11400|en_US|Bhutan|BT|Bhutan|6023099
+11401|en_US|Belarus|BY|Belarus|6022967
+11402|en_US|Eritrea|ER|Eritrea|6023185
+11403|en_US|Georgia|GE|Georgia|6022967
+11404|en_US|Kyrgyzstan|KG|Kyrgyzstan|6023099
+11405|en_US|Liechtenstein|LI|Liechtenstein|6022967
+11406|en_US|Moldova|MD|Moldova|6022967
+11408|en_US|Mongolia|MN|Mongolia|6023099
+11409|en_US|Niue|NU|Niue|6023180
+11410|en_US|Tajikistan|TJ|Tajikistan|6023099
+11411|en_US|Turkmenistan|TM|Turkmenistan|6023099
+11412|en_US|Uzbekistan|UZ|Uzbekistan|6023099
+11414|en_US|Bosnia and Herzegovina|BA|Bosnia and Herzegovina|6022967
+11704|en_US|British Indian Ocean Territory|IO|British Indian Ocean Territory|6023185
+11706|en_US|Christmas Island|CX|Christmas Island|6023180
+11708|en_US|Cocos Islands|CC|Cocos Islands|6023180
+11711|en_US|Falkland Islands|FK|Falkland Islands|6023117
+11714|en_US|Faroe Islands|FO|Faroe Islands|6022967
+11720|en_US|San Marino|SM|San Marino|6022967
+11721|en_US|St. Helena|SH|St. Helena|6023185
+11723|en_US|Tokelau|TK|Tokelau|6023180
+11725|en_US|Wallis and Futuna|WF|Wallis and Futuna|6023180
+11726|en_US|State of Palestine|PS|State of Palestine|6023182
+11399|en_US|American Samoa|AS|American Samoa|6023180
+11407|en_US|Marshall Islands|MH|Marshall Islands|6023180
+11413|en_US|Slovenia|SI|Slovenia|6022967
+11718|en_US|Pitcairn Island|PN|Pitcairn Island|6023180
+11722|en_US|Svalbard|SJ|Svalbard|6022967
+11724|en_US|Vatican City|VA|Vatican City|6022967
+6069953|en_US|St. Barthelemy|BL|St. Barthelemy|6022969
+6069955|en_US|St. Martin|MF|St. Martin|6022969
+32|en_US|Cape Verde|CV|Cape Verde|6023185
+35|en_US|Chad|TD|Chad|6023185
+36|en_US|Chile|CL|Chile|6023117
+37|en_US|China|CN|China|6023099
+39|en_US|Comoros|KM|Comoros|6023185
+40|en_US|Republic of the Congo|CG|Republic of the Congo|6023185
+42|en_US|Costa Rica|CR|Costa Rica|6023181
+45|en_US|Cyprus|CY|Cyprus|6022967
+46|en_US|Czech Republic|CZ|Czech Republic|6022967
+48|en_US|Djibouti|DJ|Djibouti|6023185
+52|en_US|Egypt|EG|Egypt|6023185
+54|en_US|Equatorial Guinea|GQ|Equatorial Guinea|6023185
+56|en_US|Ethiopia|ET|Ethiopia|6023185
+57|en_US|Fiji|FJ|Fiji|6023180
+59|en_US|France|FR|France|6022967
+60|en_US|French Guiana|GF|French Guiana|6023117
+61|en_US|French Polynesia|PF|French Polynesia|6023180
+67|en_US|Greece|GR|Greece|6022967
+71|en_US|Guatemala|GT|Guatemala|6023181
+74|en_US|Guyana|GY|Guyana|6023117
+161|en_US|Singapore|SG|Singapore|6023099
+163|en_US|Solomon Islands|SB|Solomon Islands|6023180
+165|en_US|South Africa|ZA|South Africa|6023185
+166|en_US|Spain|ES|Spain|6022967
+174|en_US|Switzerland|CH|Switzerland|6022967
+176|en_US|Taiwan|TW|Taiwan|6023099
+178|en_US|Thailand|TH|Thailand|6023099
+180|en_US|Tonga|TO|Tonga|6023180
+182|en_US|Tunisia|TN|Tunisia|6023185
+185|en_US|Tuvalu|TV|Tuvalu|6023180
+187|en_US|Uganda|UG|Uganda|6023185
+189|en_US|United Arab Emirates|AE|United Arab Emirates|6023182
+190|en_US|United Kingdom|GB|United Kingdom|6022967
+191|en_US|Uruguay|UY|Uruguay|6023117
+199|en_US|Zambia|ZM|Zambia|6023185
+200|en_US|Zimbabwe|ZW|Zimbabwe|6023185
+79|en_US|Iceland|IS|Iceland|6022967
+81|en_US|Indonesia|ID|Indonesia|6023099
+84|en_US|Ireland|IE|Ireland|6022967
+85|en_US|Israel|IL|Israel|6023182
+86|en_US|Italy|IT|Italy|6022967
+88|en_US|Jamaica|JM|Jamaica|6022969
+90|en_US|Jordan|JO|Jordan|6023182
+92|en_US|Kenya|KE|Kenya|6023185
+93|en_US|Kiribati|KI|Kiribati|6023180
+97|en_US|Latvia|LV|Latvia|6022967
+99|en_US|Lesotho|LS|Lesotho|6023185
+100|en_US|Liberia|LR|Liberia|6023185
+101|en_US|Libya|LY|Libya|6023185
+102|en_US|Lithuania|LT|Lithuania|6022967
+105|en_US|F.Y.R.O. Macedonia|MK|F.Y.R.O. Macedonia|6022967
+106|en_US|Madagascar|MG|Madagascar|6023185
+108|en_US|Malaysia|MY|Malaysia|6023099
+113|en_US|Martinique|MQ|Martinique|6022969
+121|en_US|Montserrat|MS|Montserrat|6022969
+130|en_US|St. Kitts and Nevis|KN|St. Kitts and Nevis|6022969
+132|en_US|Papua New Guinea|PG|Papua New Guinea|6023180
+138|en_US|Norway|NO|Norway|6022967
+139|en_US|Oman|OM|Oman|6023182
+140|en_US|Pakistan|PK|Pakistan|6023182
+141|en_US|Palau|PW|Palau|6023180
+148|en_US|Puerto Rico|PR|Puerto Rico|6022969
+155|en_US|Samoa|WS|Samoa|6023180
+2|en_US|Albania|AL|Albania|6022967
+4|en_US|Andorra|AD|Andorra|6022967
+10|en_US|Australia|AU|Australia|6023180
+12|en_US|Azerbaijan|AZ|Azerbaijan|6022967
+14|en_US|Bahrain|BH|Bahrain|6023182
+24|en_US|British Virgin Islands|VG|British Virgin Islands|6022969
+31|en_US|Canada|CA|Canada|500001
+33|en_US|Cayman Islands|KY|Cayman Islands|6022969
+41|en_US|Cook Islands|CK|Cook Islands|6023180
+43|en_US|Croatia|HR|Croatia|6022967
+47|en_US|Denmark|DK|Denmark|6022967
+49|en_US|Dominica|DM|Dominica|6022969
+50|en_US|Dominican Republic|DO|Dominican Republic|6022969
+55|en_US|Estonia|EE|Estonia|6022967
+58|en_US|Finland|FI|Finland|6022967
+62|en_US|Gabon|GA|Gabon|6023185
+63|en_US|Gambia|GM|Gambia|6023185
+64|en_US|Germany|DE|Germany|6022967
+65|en_US|Ghana|GH|Ghana|6023185
+66|en_US|Gibraltar|GI|Gibraltar|6022967
+68|en_US|Grenada|GD|Grenada|6022969
+69|en_US|Guadeloupe|GP|Guadeloupe|6022969
+70|en_US|Guam|GU|Guam|6023180
+72|en_US|Guinea|GN|Guinea|6023185
+73|en_US|Guinea-Bissau|GW|Guinea-Bissau|6023185
+75|en_US|Haiti|HT|Haiti|6022969
+162|en_US|Slovakia|SK|Slovakia|6022967
+168|en_US|St. Lucia|LC|St. Lucia|6022969
+169|en_US|St. Vincent and the Grenadines|VC|St. Vincent and the Grenadines|6022969
+173|en_US|Sweden|SE|Sweden|6022967
+181|en_US|Trinidad and Tobago|TT|Trinidad and Tobago|6022969
+183|en_US|Turkey|TR|Turkey|6022967
+184|en_US|Turks and Caicos|TC|Turks and Caicos|6022969
+186|en_US|U.S. Virgin Islands|VI|U.S. Virgin Islands|6022969
+188|en_US|Ukraine|UA|Ukraine|6022967
+192|en_US|Vanuatu|VU|Vanuatu|6023180
+197|en_US|Serbia|RS|Serbia|6022967
+198|en_US|Democratic Republic of the Congo|CD|Democratic Republic of the Congo|6023185
+201|en_US|United States of America|US|United States of America|500001
