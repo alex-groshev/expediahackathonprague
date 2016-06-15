@@ -75,11 +75,13 @@ function initialize() {
       var marker = new google.maps.Marker({
         map: map,
         //icon: data[i].image,
+        hid: data[i].name,
         title: data[i].name,
         position: {lat: data[i].gps.latitude, lng: data[i].gps.longitude}
       });
       google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(this.title);
+        console.log(this.hid);
         infowindow.open(map, this);
       });
     }
