@@ -3,7 +3,7 @@ $(document).ready(function () {
 	$(".valuesContainer").hide();
 	$(".actionsContainer").hide();
 	$("#output").hide();
-	
+
 	drawPOS();
 });
 
@@ -46,7 +46,7 @@ function drawPOS() {
 						success: function (our_data) {
 
 							var jsonData = JSON.parse(our_data);
-							
+
 							$("#posList").append(writePOSRow(posID, regionId, jsonData.pos, jsonData.region));
 							$(".wait").hide();
 							$(".posContainer").show();
@@ -70,7 +70,7 @@ function drawPOS() {
 
 
 
-function drawRate(posID, regionID, dateStr) {
+function drawRate(posID, regionID, dateStr, btnOrder) {
 	$("#output").hide();
 
 	var hotelID = 15240008;
@@ -83,7 +83,17 @@ function drawRate(posID, regionID, dateStr) {
 //			var jsonVL = JSON.parse(data);
 //			alert(JSON.stringify(jsonVL));
 			showData(JSON.parse(data));
+			
+			// display actions
 			$(".actionsContainer").show();
+			
+			// change selected btn
+			$(".POS_btn").each(function () {
+				$(this).removeClass("btn-primary");
+				$(this).addClass("btn-default");
+			});
+			$("#" + btnOrder + "_" + posID + "_" + regionID).removeClass("btn-default");
+			$("#" + btnOrder + "_" + posID + "_" + regionID).addClass("btn-primary");
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
 			$("#output").show();
@@ -253,24 +263,24 @@ function writePOSRow(posID, regionID, posName, regionName) {
 	string += "<td>" + regionName + " (" + regionID + ")</td><td>";
 
 	string += "<button onclick=\"javascript: drawRate(";
-	string += "'" + posID + "', '" + regionID + "', '2016-06-15'";
+	string += "'" + posID + "', '" + regionID + "', '2016-06-15', '1'";
 	string += ");\"";
-	string += "type='button' class='btn btn-xs btn-primary'>2016-06-15</button>&nbsp;";
+	string += "type='button' class='btn btn-xs btn-default POS_btn' id='1_" + posID + "_" + regionID + "'>2016-06-15</button>&nbsp;";
 
 	string += "<button onclick=\"javascript: drawRate(";
-	string += "'" + posID + "', '" + regionID + "', '2016-06-14'";
+	string += "'" + posID + "', '" + regionID + "', '2016-06-14', '2'";
 	string += ");\"";
-	string += "type='button' class='btn btn-xs btn-default'>2016-06-14</button>&nbsp;";
+	string += "type='button' class='btn btn-xs btn-default POS_btn' id='2_" + posID + "_" + regionID + "'>2016-06-14</button>&nbsp;";
 
 	string += "<button onclick=\"javascript: drawRate(";
-	string += "'" + posID + "', '" + regionID + "', '2016-06-13'";
+	string += "'" + posID + "', '" + regionID + "', '2016-06-13', '3'";
 	string += ");\"";
-	string += "type='button' class='btn btn-xs btn-default'>2016-06-13</button>&nbsp;";
+	string += "type='button' class='btn btn-xs btn-default POS_btn' id='3_" + posID + "_" + regionID + "'>2016-06-13</button>&nbsp;";
 
 	string += "<button onclick=\"javascript: drawRate(";
-	string += "'" + posID + "', '" + regionID + "', '2016-06-12'";
+	string += "'" + posID + "', '" + regionID + "', '2016-06-12', '4'";
 	string += ");\"";
-	string += "type='button' class='btn btn-xs btn-default'>2016-06-12</button>";
+	string += "type='button' class='btn btn-xs btn-default POS_btn' id='4_" + posID + "_" + regionID + "'>2016-06-12</button>";
 
 	string += "</td></tr>";
 
