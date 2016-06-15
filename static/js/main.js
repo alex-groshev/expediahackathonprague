@@ -38,8 +38,8 @@ var coordLat = 50.088182; // = position.coords.latitude
 var coordLong = 14.420210; // = position.coords.longitude;
 
 function found_location(position) {
-	coordLat = position.coords.latitude;
-	coordLong = position.coords.longitude;
+  coordLat = position.coords.latitude;
+  coordLong = position.coords.longitude;
 }
 
 function no_location() {
@@ -47,18 +47,18 @@ function no_location() {
 
 function initialize() {
 
-	if(navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(found_location, no_location);
-	} else {
-		no_location();
-	}
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(found_location, no_location);
+  } else {
+    no_location();
+  }
 
-	var markers = [];
-	var map = new google.maps.Map(document.getElementById('map-canvas'), {
-		//mapTypeId: google.maps.MapTypeId.ROADMAP, zoom: 14
-		center: {lat: coordLat, lng: coordLong},
-		zoom: 14
-	});
+  var markers = [];
+  var map = new google.maps.Map(document.getElementById('map-canvas'), {
+    //mapTypeId: google.maps.MapTypeId.ROADMAP, zoom: 14
+    center: {lat: coordLat, lng: coordLong},
+    zoom: 14
+  });
 
   infowindow = new google.maps.InfoWindow();
 
@@ -66,7 +66,7 @@ function initialize() {
   var input = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  var jsonURL = "https://localhost/data.json?lat="+coordLat+"&long="+coordLong;
+  var jsonURL = "data.json?lat="+coordLat+"&long="+coordLong;
 
 
   $.get(jsonURL, function(data){
