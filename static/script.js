@@ -1,10 +1,12 @@
 $(document).ready(function () {
+	$(".wait").hide();
 	$(".posContainer").hide();
 	$(".valuesContainer").hide();
 	$(".actionsContainer").hide();
 	$("#output").hide();
 
-	drawPOS();
+	initialize();	
+//	drawPOS();
 });
 
 
