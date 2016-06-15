@@ -40,14 +40,14 @@ function drawPOS() {
 
 					var endpoint = "http://localhost:5000/names/pos/" + posID + "/region/" + regionId;
 
+					console.log(endpoint);
+
 					$.ajax({
 						type: "GET",
 						url: endpoint,
 						success: function (our_data) {
-
 							var jsonData = JSON.parse(our_data);
-
-							$("#posList").append(writePOSRow(posID, regionId, jsonData.pos, jsonData.region));
+							$("#posList").append(writePOSRow(jsonData.posId, jsonData.regionId, jsonData.pos, jsonData.region));
 							$(".wait").hide();
 							$(".posContainer").show();
 						},
@@ -262,6 +262,8 @@ function writePOSRow(posID, regionID, posName, regionName) {
 	var string = "<tr><td>" + posName + " (" + posID + ")</td>";
 	string += "<td>" + regionName + " (" + regionID + ")</td><td>";
 
+	console.log(string);
+
 	string += "<button onclick=\"javascript: drawRate(";
 	string += "'" + posID + "', '" + regionID + "', '2016-06-15', '1'";
 	string += ");\"";
@@ -283,6 +285,8 @@ function writePOSRow(posID, regionID, posName, regionName) {
 	string += "type='button' class='btn btn-xs btn-default POS_btn' id='4_" + posID + "_" + regionID + "'>2016-06-12</button>";
 
 	string += "</td></tr>";
+
+    //console.log(string);
 
 	return string;
 }

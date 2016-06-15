@@ -48,7 +48,7 @@ def pos_region(posId, regionId):
     obj = collection.find_one({"RegionId": long(regionId)})
     region = remove_u(str(obj["RegionNameLong"])).replace("'", '"')
 
-    return remove_u(str({"region": region, "pos": pos})).replace("'", '"')
+    return remove_u(str({"region": region, "regionId": regionId, "pos": pos, "posId": posId})).replace("'", '"')
 
 
 if __name__ == "__main__":
