@@ -1,4 +1,17 @@
+/**
+ * Returns a random number between min (inclusive) and max (exclusive)
+ */
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+}
 
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive)
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 var firstPlace;
 var secondPlace;
@@ -47,6 +60,14 @@ function no_location() {
 
 function initialize() {
 
+  $(".wait").hide();
+  $(".posContainer").hide();
+  $(".valuesContainer").hide();
+  $(".actionsContainer").hide();
+  $("#output").hide();
+
+  drawPOS();
+
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(found_location, no_location);
   } else {
@@ -57,7 +78,7 @@ function initialize() {
   var map = new google.maps.Map(document.getElementById('map-canvas'), {
     //mapTypeId: google.maps.MapTypeId.ROADMAP, zoom: 14
     center: {lat: coordLat, lng: coordLong},
-    zoom: 14
+    zoom: 13
   });
 
   infowindow = new google.maps.InfoWindow();
@@ -66,6 +87,7 @@ function initialize() {
   var input = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  map.setOptions({draggable: false});
   var jsonURL = "data.json?lat="+coordLat+"&long="+coordLong;
 
 
@@ -81,7 +103,8 @@ function initialize() {
       });
       google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(this.title);
-        console.log(this.hid);
+        random = getRandomInt(1,5);
+        drawRate('1', '6293341', '2016-06-1'+random, '1');
         infowindow.open(map, this);
       });
     }
@@ -96,3 +119,4 @@ function initialize() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+  

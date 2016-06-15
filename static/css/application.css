@@ -4,13 +4,17 @@ html, body {
 }
 
 #map-canvas {
-  height: 600px;
+  height: 400px;
 }
 
 #graph-canvas {
   background-image: url("/img/grid.png");
   background-color: #cccccc;
   height: 300px;
+}
+
+#data-header-canvas, #actionsDiv, #values-title {
+  display: none;
 }
 
 .controls {

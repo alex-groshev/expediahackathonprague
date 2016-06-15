@@ -1,3 +1,4 @@
+/**
 $(document).ready(function () {
 	$(".wait").hide();
 	$(".posContainer").hide();
@@ -8,7 +9,7 @@ $(document).ready(function () {
 	initialize();	
 //	drawPOS();
 });
-
+*/
 
 
 
@@ -135,9 +136,9 @@ function showData(dataSerie) {
 	drawLineChart(labelList, avgRankList, "rank_avg_chart");
 	drawLineChart(labelList, avgCompList, "comp_avg_chart");
 
-	$('html, body').animate({
-		scrollTop: $("#chartsDiv").offset().top
-	}, 1000);
+	//$('html, body').animate({
+	//	scrollTop: $("#chartsDiv").offset().top
+	//}, 1000);
 }
 
 
