@@ -118,16 +118,12 @@ db.timeseries.aggregate( [ { $match : { metric : "avgPrice" } }, { $group: { _id
 db.timeseries.find({"$and": [ {"tpid":1}, {"regionId": 2872}, {"hotelId": 15240008} ]}, {"_id":0, "searchDate":1, "metric":1, "value":1} ).sort({"searchDate":1})
 
 
-db.timeseries.aggregate([
-    { "$match" : { "tpid": 1, "regionId": 2872, "hotelId": 15240008} },
-    { "$group" : { "_id": "$searchDate", "metric": "$metric", "value": "$value" } }
-])
-
 
 
 
 db.timeseries.aggregate([
     { "$match" : { "tpid": 1, "regionId": 2872, "hotelId": 15240008} },
     { "$group" : { "_id": "$searchDate", "metrics": { "$push": "$metric" }, "values": { "$push": "$value" } } },
-    { "$project" : { "searchDate": "$_id", "metrics": 1, "values": 1, "_id": 0 } }
-]).sort( {"searchDate": 1} )
+    { "$project" : { "searchDate": "$_id", "metrics": 1, "values": 1, "_id": 0 } },
+    { "$sort" : { "searchDate": 1 } }
+])

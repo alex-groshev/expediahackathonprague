@@ -26,20 +26,19 @@ def hello():
     ]
     return str(list(collection.aggregate(query)))
 
-#return json.jsonify(list(collection.find({"$and": [ {"tpid":1}, {"metric": "avgPrice"}, {"hotelId": 15240008} ]}, {"_id":0, "searchDate":1, "value":1})))
 
 @app.route("/series/hotel/<hotelId>/pos/<tpId>/region/<regionId>")
 def series(hotelId, tpId, regionId):
     collection = get_db().timeseries
-    #return str(list(collection.find({"$and": [ {"tpid": long(tpId)}, {"regionId": long(regionId)}, {"hotelId": long(hotelId)} ]}, {"_id":0, "searchDate":1, "metric":1 , "value":1})))
-    # xxx = str(list(collection.find({"$and": [ {"tpid": long(tpId)}, {"regionId": long(regionId)}, {"hotelId": long(hotelId)} ]}, {"_id":0, "searchDate":1, "metric":1 , "value":1})))
-    # return remove_u(xxx)
 
-    records = list(collection.find({"$and": [ {"tpid": long(tpId)}, {"regionId": long(regionId)}, {"hotelId": long(hotelId)} ]}, {"_id":0, "searchDate":1, "metric":1 , "value":1}))
-    result = []
-    for record in records:
+    query = [
+        { "$match" : { "tpid": long(tpId), "regionId": long(regionId), "hotelId": long(hotelId)} },
+        { "$group" : { "_id": "$searchDate", "metrics": { "$push": "$metric" }, "values": { "$push": "$value" } } },
+        { "$project" : { "searchDate": "$_id", "metrics": 1, "values": 1, "_id": 0 } },
+        { "$sort" : { "searchDate": 1 } }
+    ]
 
-
+    return remove_u(str(list(collection.aggregate(query))))
 
 
 if __name__ == "__main__":
