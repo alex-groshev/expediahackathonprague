@@ -1,8 +1,12 @@
 import sys
 import json
-from flask import Flask, request, render_template, json , send_from_directory
+from flask import Flask, request, render_template, json, send_from_directory, Response
+import pymongo
 from pymongo import MongoClient
 from bson.son import SON
+import numpy as np
+from pandas import Series, DataFrame
+import pandas as pd
 
 
 def get_db():
@@ -12,6 +16,24 @@ def get_db():
 
 def remove_u(source):
     return source.replace("u'", "'")
+
+
+def stats_searchdate_frame_factory(data):
+    avg_comp_arr = []
+    avg_price_arr = []
+    avg_rank_arr = []
+    checkin_date = []
+    for item in data:
+        avg_comp_arr.append(item['avgComp'])
+        avg_price_arr.append(item['avgPrice'])
+        avg_rank_arr.append(item['avgRank'])
+        checkin_date.append(item['checkinDate'])
+    series_avg_comp = pd.Series(avg_comp_arr, index=checkin_date)
+    series_avg_price = pd.Series(avg_price_arr, index=checkin_date)
+    series_avg_rank = pd.Series(avg_rank_arr, index=checkin_date)
+    dict = {'comp' : series_avg_comp, 'price': series_avg_price, 'rank': series_avg_rank}
+    return DataFrame(dict)
+
 
 
 app = Flask(__name__, static_url_path='')
@@ -49,6 +71,25 @@ def pos_region(posId, regionId):
     region = remove_u(str(obj["RegionNameLong"])).replace("'", '"')
 
     return remove_u(str({"region": region, "regionId": regionId, "pos": pos, "posId": posId})).replace("'", '"')
+
+
+@app.route("/stats/hotel/<hotelId>/pos/<tpId>/region/<regionId>/searchDate/<searchDate>")
+def stats_searchdate(hotelId, tpId, regionId, searchDate):
+    collection = get_db().timeseries2
+    search_res = collection.find({ "hotelId": long(hotelId), "tpid": long(tpId), "regionId": long(regionId), "searchDate": searchDate }).sort("checkinDate", pymongo.ASCENDING)
+    data = list(search_res)
+    df = stats_searchdate_frame_factory(data)
+
+    result = {
+        'data': df.to_json(),
+        'max': df.max().to_json(),
+        'min': df.min().to_json(),
+        'avg': df.mean().to_json(),
+        'std': df.std().to_json(),
+        'searchDate': searchDate
+    }
+
+    return remove_u(str(result)).replace("'", '"')
 
 
 if __name__ == "__main__":
