@@ -16,6 +16,7 @@ function diplayDashboard() {
 	$(".valuesContainer").hide();
 	$(".actionsContainer").hide();
 	$("#output").hide();
+	$("#promoPanel").hide();
 
 	drawPOS();
 }
