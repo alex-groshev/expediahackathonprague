@@ -81,11 +81,11 @@ def stats_searchdate(hotelId, tpId, regionId, searchDate):
     df = stats_searchdate_frame_factory(data)
 
     result = {
-        'data': df.to_json(),
-        'max': df.max().to_json(),
-        'min': df.min().to_json(),
-        'avg': df.mean().to_json(),
-        'std': df.std().to_json(),
+        'data': json.loads(df.to_json()),
+        'max': json.loads(df.max().to_json()),
+        'min': json.loads(df.min().to_json()),
+        'avg': json.loads(df.mean().to_json()),
+        'std': json.loads(df.std().to_json()),
         'searchDate': searchDate
     }
 
