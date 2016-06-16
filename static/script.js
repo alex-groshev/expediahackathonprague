@@ -1,13 +1,11 @@
 
-//$(document).ready(function () {
-//	$(".wait").hide();
-//	$(".posContainer").hide();
-//	$(".valuesContainer").hide();
-//	$(".actionsContainer").hide();
-//	$("#output").hide();
-//
-//	drawPOS();
-//});
+$(document).ready(function () {
+	$(".wait").hide();
+	$(".posContainer").hide();
+	$(".valuesContainer").hide();
+	$(".actionsContainer").hide();
+	$("#output").hide();
+});
 
 
 
@@ -50,10 +48,7 @@ function drawPOS() {
 				for (var j in data.hopsTpidsList[i].sortedRegionList) {
 
 					var regionId = data.hopsTpidsList[i].sortedRegionList[j];
-
 					var endpoint = "http://localhost:5000/names/pos/" + posID + "/region/" + regionId;
-
-					console.log(endpoint);
 
 					$.ajax({
 						type: "GET",
@@ -63,6 +58,13 @@ function drawPOS() {
 							$("#posList").append(writePOSRow(jsonData.posId, jsonData.regionId, jsonData.pos, jsonData.region));
 							$(".wait").hide();
 							$(".posContainer").show();
+							$("#datepicker_" + jsonData.posId + "_" + jsonData.regionId).datepicker({
+								dateFormat: "yy-mm-dd",
+								onSelect: function () {
+									var dateStr = $("#datepicker_" + posID + "_" + jsonData.regionId).val();
+									drawRate(posID, jsonData.regionId, dateStr, "1");
+								}
+							});
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							$("#output").show();
@@ -128,18 +130,12 @@ function showData(dataSerie) {
 	var avgRankList = new Array();
 	var labelList = new Array();
 	for (var i in dataSerie) {
-//		labelList[i] = dataSerie[i].searchDate;
-//
-//		avgRankList[i] = parseFloat(dataSerie[i].values[0]);
-//		avgRateList[i] = parseFloat(dataSerie[i].values[1]);
-//		avgCompList[i] = parseFloat(dataSerie[i].values[2]);
 		labelList[i] = dataSerie[i].checkinDate;
 
 		avgRankList[i] = parseFloat(dataSerie[i].avgRank);
 		avgRateList[i] = parseFloat(dataSerie[i].avgPrice);
 		avgCompList[i] = parseFloat(dataSerie[i].avgComp);
 	}
-
 
 	$(".valuesContainer").show();
 	drawLineChart(labelList, avgRateList, "rate_avg_chart");
@@ -275,31 +271,40 @@ function writePOSRow(posID, regionID, posName, regionName) {
 	var string = "<tr><td>" + posName + " (" + posID + ")</td>";
 	string += "<td>" + regionName + " (" + regionID + ")</td><td>";
 
-	console.log(string);
+	string += "<input type='text' id='datepicker_" + posID + "_" + regionID + "'>";
+//	string += "<button onclick=\"javascript: drawRateDate(";
+//	string += "'" + posID + "', '" + regionID + "', '1'";
+//	string += ");\"";
+//	string += "type='button' class='btn btn-xs btn-default POS_btn' id='1_" + posID + "_" + regionID + "'>";
+//	string += "<span class='glyphicon glyphicon-signal' aria-hidden='true'></span></button>";
+//	string += "<div class=\"input-append date\" id=\"dp3\" data-date=\"2016-06-15\" data-date-format=\"yyyy-mm-dd\">";
+//	string += "<input class=\"span2\" size=\"16\" type=\"text\" value=\"2016-06-15\">";
+//	string += "<span class=\"add-on\"><i class=\"icon-th\"></i></span></div>";
 
-	string += "<button onclick=\"javascript: drawRate(";
-	string += "'" + posID + "', '" + regionID + "', '2016-06-15', '1'";
-	string += ");\"";
-	string += "type='button' class='btn btn-xs btn-default POS_btn' id='1_" + posID + "_" + regionID + "'>2016-06-15</button>&nbsp;";
 
-	string += "<button onclick=\"javascript: drawRate(";
-	string += "'" + posID + "', '" + regionID + "', '2016-06-14', '2'";
-	string += ");\"";
-	string += "type='button' class='btn btn-xs btn-default POS_btn' id='2_" + posID + "_" + regionID + "'>2016-06-14</button>&nbsp;";
-
-	string += "<button onclick=\"javascript: drawRate(";
-	string += "'" + posID + "', '" + regionID + "', '2016-06-13', '3'";
-	string += ");\"";
-	string += "type='button' class='btn btn-xs btn-default POS_btn' id='3_" + posID + "_" + regionID + "'>2016-06-13</button>&nbsp;";
-
-	string += "<button onclick=\"javascript: drawRate(";
-	string += "'" + posID + "', '" + regionID + "', '2016-06-12', '4'";
-	string += ");\"";
-	string += "type='button' class='btn btn-xs btn-default POS_btn' id='4_" + posID + "_" + regionID + "'>2016-06-12</button>";
+	/*
+	 string += "<button onclick=\"javascript: drawRate(";
+	 string += "'" + posID + "', '" + regionID + "', '2016-06-15', '1'";
+	 string += ");\"";
+	 string += "type='button' class='btn btn-xs btn-default POS_btn' id='1_" + posID + "_" + regionID + "'>2016-06-15</button>&nbsp;";
+	 
+	 string += "<button onclick=\"javascript: drawRate(";
+	 string += "'" + posID + "', '" + regionID + "', '2016-06-14', '2'";
+	 string += ");\"";
+	 string += "type='button' class='btn btn-xs btn-default POS_btn' id='2_" + posID + "_" + regionID + "'>2016-06-14</button>&nbsp;";
+	 
+	 string += "<button onclick=\"javascript: drawRate(";
+	 string += "'" + posID + "', '" + regionID + "', '2016-06-13', '3'";
+	 string += ");\"";
+	 string += "type='button' class='btn btn-xs btn-default POS_btn' id='3_" + posID + "_" + regionID + "'>2016-06-13</button>&nbsp;";
+	 
+	 string += "<button onclick=\"javascript: drawRate(";
+	 string += "'" + posID + "', '" + regionID + "', '2016-06-12', '4'";
+	 string += ");\"";
+	 string += "type='button' class='btn btn-xs btn-default POS_btn' id='4_" + posID + "_" + regionID + "'>2016-06-12</button>";
+	 */
 
 	string += "</td></tr>";
-
-	//console.log(string);
 
 	return string;
 }

@@ -14,7 +14,7 @@ html, body {
 }
 
 #data-header-canvas, #actionsDiv, #values-title {
-  display: none;
+/*  display: none;*/
 }
 
 .controls {
