@@ -40,11 +40,14 @@ function drawPOS() {
 		},
 		dataType: 'json',
 		success: function (data) {
+			
+			$("#posList").html("");
 
 			for (var i in data.hopsTpidsList) {
 
 				var posID = data.hopsTpidsList[i].tpid;
 
+				var counter = 0;
 				for (var j in data.hopsTpidsList[i].sortedRegionList) {
 
 					var regionId = data.hopsTpidsList[i].sortedRegionList[j];
@@ -63,8 +66,10 @@ function drawPOS() {
 								onSelect: function () {
 									var dateStr = $("#datepicker_" + posID + "_" + jsonData.regionId).val();
 									drawRate(posID, jsonData.regionId, dateStr, "1");
-								}
+								},
+								disabled: (counter === 1)
 							});
+							counter++;
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							$("#output").show();
@@ -95,20 +100,10 @@ function drawRate(posID, regionID, dateStr, btnOrder) {
 		type: "GET",
 		url: endpoint,
 		success: function (data) {
-//			var jsonVL = JSON.parse(data);
-//			alert(JSON.stringify(jsonVL));
 			showData(JSON.parse(data));
 
 			// display actions
 			$(".actionsContainer").show();
-
-			// change selected btn
-			$(".POS_btn").each(function () {
-				$(this).removeClass("btn-primary");
-				$(this).addClass("btn-default");
-			});
-			$("#" + btnOrder + "_" + posID + "_" + regionID).removeClass("btn-default");
-			$("#" + btnOrder + "_" + posID + "_" + regionID).addClass("btn-primary");
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
 			$("#output").show();
@@ -116,6 +111,20 @@ function drawRate(posID, regionID, dateStr, btnOrder) {
 		}
 	});
 
+
+	// get stats
+	var stats_endpoint = "http://localhost:5000/stats/hotel/" + hotelID + "/pos/" + posID + "/region/" + regionID + "/searchDate/" + dateStr;
+	$.ajax({
+		type: "GET",
+		url: stats_endpoint,
+		success: function (stats_data) {
+			showStats(JSON.parse(stats_data));
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			$("#output").show();
+			$("#output").html('<strong>ERROR</strong>:&nbsp;' + jqXHR.responseText + " - " + textStatus + " - " + JSON.stringify(errorThrown));
+		}
+	});
 }
 
 
@@ -142,43 +151,31 @@ function showData(dataSerie) {
 	drawLineChart(labelList, avgRankList, "rank_avg_chart");
 	drawLineChart(labelList, avgCompList, "comp_avg_chart");
 
-	//$('html, body').animate({
-	//	scrollTop: $("#chartsDiv").offset().top
-	//}, 1000);
+	$('html, body').animate({
+		scrollTop: $("#chartsDiv").offset().top
+	}, 1000);
 }
 
 
 
+function showStats(dataSerie) {
+	$("#rate_avg").html(fixNumber(dataSerie.avg.price));
+	$("#rate_min").html(fixNumber(dataSerie.min.price));
+	$("#rate_max").html(fixNumber(dataSerie.max.price));
+	$("#rate_std_dev").html(fixNumber(dataSerie.std.price));
 
-function drawBarChart(labelList, dataList, canvasID) {
+	$("#rank_avg").html(fixNumber(dataSerie.avg.rank));
+	$("#rank_min").html(fixNumber(dataSerie.min.rank));
+	$("#rank_max").html(fixNumber(dataSerie.max.rank));
+	$("#rank_std_dev").html(fixNumber(dataSerie.std.rank));
 
-	var data = {
-		labels: labelList,
-		datasets: [
-			{
-				label: "Rate AVG",
-				backgroundColor: "rgba(60,118,71,0.2)",
-				borderColor: "rgba(60,118,71,1)",
-				borderWidth: 1,
-				hoverBackgroundColor: "rgba(60,118,71,0.4)",
-				hoverBorderColor: "rgba(60,118,71,1)",
-				data: dataList
-			}
-		]
-	};
-
-	var ctx = document.getElementById(canvasID).getContext("2d");
-	new Chart(ctx, {
-		type: 'bar',
-		data: data,
-		options: {
-			legend: {
-				display: false
-			}
-		}
-	});
-
+	$("#comp_avg").html(fixNumber(dataSerie.avg.comp));
+	$("#comp_min").html(fixNumber(dataSerie.min.comp));
+	$("#comp_max").html(fixNumber(dataSerie.max.comp));
+	$("#comp_std_dev").html(fixNumber(dataSerie.std.comp));
 }
+
+
 
 
 
@@ -270,41 +267,51 @@ function writePOSRow(posID, regionID, posName, regionName) {
 
 	var string = "<tr><td>" + posName + " (" + posID + ")</td>";
 	string += "<td>" + regionName + " (" + regionID + ")</td><td>";
-
 	string += "<input type='text' id='datepicker_" + posID + "_" + regionID + "'>";
-//	string += "<button onclick=\"javascript: drawRateDate(";
-//	string += "'" + posID + "', '" + regionID + "', '1'";
-//	string += ");\"";
-//	string += "type='button' class='btn btn-xs btn-default POS_btn' id='1_" + posID + "_" + regionID + "'>";
-//	string += "<span class='glyphicon glyphicon-signal' aria-hidden='true'></span></button>";
-//	string += "<div class=\"input-append date\" id=\"dp3\" data-date=\"2016-06-15\" data-date-format=\"yyyy-mm-dd\">";
-//	string += "<input class=\"span2\" size=\"16\" type=\"text\" value=\"2016-06-15\">";
-//	string += "<span class=\"add-on\"><i class=\"icon-th\"></i></span></div>";
-
-
-	/*
-	 string += "<button onclick=\"javascript: drawRate(";
-	 string += "'" + posID + "', '" + regionID + "', '2016-06-15', '1'";
-	 string += ");\"";
-	 string += "type='button' class='btn btn-xs btn-default POS_btn' id='1_" + posID + "_" + regionID + "'>2016-06-15</button>&nbsp;";
-	 
-	 string += "<button onclick=\"javascript: drawRate(";
-	 string += "'" + posID + "', '" + regionID + "', '2016-06-14', '2'";
-	 string += ");\"";
-	 string += "type='button' class='btn btn-xs btn-default POS_btn' id='2_" + posID + "_" + regionID + "'>2016-06-14</button>&nbsp;";
-	 
-	 string += "<button onclick=\"javascript: drawRate(";
-	 string += "'" + posID + "', '" + regionID + "', '2016-06-13', '3'";
-	 string += ");\"";
-	 string += "type='button' class='btn btn-xs btn-default POS_btn' id='3_" + posID + "_" + regionID + "'>2016-06-13</button>&nbsp;";
-	 
-	 string += "<button onclick=\"javascript: drawRate(";
-	 string += "'" + posID + "', '" + regionID + "', '2016-06-12', '4'";
-	 string += ");\"";
-	 string += "type='button' class='btn btn-xs btn-default POS_btn' id='4_" + posID + "_" + regionID + "'>2016-06-12</button>";
-	 */
-
 	string += "</td></tr>";
 
 	return string;
 }
+
+
+
+function fixNumber(string) {
+	return parseFloat(Math.round(string * 100) / 100).toFixed(2);
+}
+
+
+
+/**
+ * OLD
+ */
+function drawBarChart(labelList, dataList, canvasID) {
+
+	var data = {
+		labels: labelList,
+		datasets: [
+			{
+				label: "Rate AVG",
+				backgroundColor: "rgba(60,118,71,0.2)",
+				borderColor: "rgba(60,118,71,1)",
+				borderWidth: 1,
+				hoverBackgroundColor: "rgba(60,118,71,0.4)",
+				hoverBorderColor: "rgba(60,118,71,1)",
+				data: dataList
+			}
+		]
+	};
+
+	var ctx = document.getElementById(canvasID).getContext("2d");
+	new Chart(ctx, {
+		type: 'bar',
+		data: data,
+		options: {
+			legend: {
+				display: false
+			}
+		}
+	});
+
+}
+
+

@@ -69,7 +69,7 @@
 		</div>
 
 		<!--  Charts -->
-		<div class="container  col-lg-7" id="chartsDiv">
+		<div class="container col-lg-7" id="chartsDiv">
 			<h4 class="valuesContainer">
 				<span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;Values
 			</h4>
@@ -100,6 +100,58 @@
 					</div>
 					<div class="panel-body">
 						<canvas id="comp_avg_chart" class="market_chart" width="400" height="400"></canvas>
+					</div>
+				</div>
+			</div>
+			<!-- stats -->
+			<div class="col-sm-4 valuesContainer">
+				<div class="panel panel-success" id="ratePanel">
+					<div class="panel-heading">
+						<h3 class="panel-title">Rate Details</h3>
+					</div>
+					<div class="panel-body">
+						<ul class="list-group">
+						  <li class="list-group-item">
+							<span class="badge" id="rate_avg"></span>Average<br/>
+							<span class="badge" id="rate_min"></span>Min<br/>
+							<span class="badge" id="rate_max"></span>MAX<br/>
+							<span class="badge" id="rate_std_dev"></span>Std Dev
+						  </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 valuesContainer">
+				<div class="panel panel-primary" id="ratePanel">
+					<div class="panel-heading">
+						<h3 class="panel-title">Rank Details</h3>
+					</div>
+					<div class="panel-body">
+						<ul class="list-group">
+						  <li class="list-group-item">
+							<span class="badge" id="rank_avg"></span>Average<br/>
+							<span class="badge" id="rank_min"></span>Min<br/>
+							<span class="badge" id="rank_max"></span>MAX<br/>
+							<span class="badge" id="rank_std_dev"></span>Std Dev
+						  </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 valuesContainer">
+				<div class="panel panel-warning" id="ratePanel">
+					<div class="panel-heading">
+						<h3 class="panel-title">Comp. Details</h3>
+					</div>
+					<div class="panel-body">
+						<ul class="list-group">
+						  <li class="list-group-item">
+							<span class="badge" id="comp_avg"></span>Average<br/>
+							<span class="badge" id="comp_min"></span>Min<br/>
+							<span class="badge" id="comp_max"></span>MAX<br/>
+							<span class="badge" id="comp_std_dev"></span>Std Dev
+						  </li>
+						</ul>
 					</div>
 				</div>
 			</div>
