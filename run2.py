@@ -7,6 +7,7 @@ import numpy as np
 from pandas import Series, DataFrame
 import pandas as pd
 import requests
+from requests.auth import HTTPBasicAuth
 
 
 class UrlFactory:
@@ -23,7 +24,7 @@ class UrlFactory:
 def get_scores(hotel_id):
     url_factory = UrlFactory('https://services.expediapartnercentral.com')
     url = url_factory.url_promo_score(hotel_id=hotel_id)
-    response = requests.get(url, auth=('EQCRateGAIN','kaB7tRuP'))
+    response = requests.get(url, auth=HTTPBasicAuth('EQCRateGAIN','kaB7tRuP'),verify=False)
 
     page = json.loads(response.content)
     scores = [float(rp['score']) for rp in page['Entity']]

@@ -5,6 +5,7 @@ $(document).ready(function () {
 	$(".valuesContainer").hide();
 	$(".actionsContainer").hide();
 	$("#output").hide();
+	$("#promoPanel").hide();
 });
 
 
@@ -40,7 +41,7 @@ function drawPOS() {
 		},
 		dataType: 'json',
 		success: function (data) {
-			
+
 			$("#posList").html("");
 
 			for (var i in data.hopsTpidsList) {
@@ -155,6 +156,42 @@ function showData(dataSerie) {
 		scrollTop: $("#chartsDiv").offset().top
 	}, 1000);
 }
+
+
+
+
+function promoFill() {
+	var hotelID = 15240008;
+	var endpoint = "http://localhost:5000/promos/" + hotelID;
+	
+	$.ajax({
+		type: "GET",
+		url: endpoint,
+		success: function (data) {
+			var dataSerie = JSON.parse(data);
+
+			var counter = 1;
+			for (var i in dataSerie.percents) {
+
+				$("#promo_perc_" + counter).html(fixNumber(dataSerie.percents[i]));
+				$("#promo_score_" + counter).html(fixNumber(dataSerie.scores[i]));
+				counter++;
+			}
+			
+			$("#promoPanel").show();
+			
+			$('html, body').animate({
+				scrollTop: $("#promoPanel").offset().top
+			}, 1000);
+			
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			$("#output").show();
+			$("#output").html('<strong>ERROR</strong>:&nbsp;' + jqXHR.responseText + " - " + textStatus + " - " + JSON.stringify(errorThrown));
+		}
+	});
+}
+
 
 
 
