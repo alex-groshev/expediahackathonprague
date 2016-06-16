@@ -117,13 +117,13 @@ function no_location() {
 
 function initialize() {
 
-  $(".wait").hide();
-  $(".posContainer").hide();
-  $(".valuesContainer").hide();
-  $(".actionsContainer").hide();
-  $("#output").hide();
-
-  drawPOS();
+//  $(".wait").hide();
+//  $(".posContainer").hide();
+//  $(".valuesContainer").hide();
+//  $(".actionsContainer").hide();
+//  $("#output").hide();
+//
+//  drawPOS();
 
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(found_location, no_location);
@@ -179,7 +179,8 @@ function initialize() {
       google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(this.title);
         random = getRandomInt(1,5);
-        drawRate('1', '6293341', '2016-06-1'+random, '1');
+//        drawRate('1', '6293341', '2016-06-1'+random, '1');
+		diplayDashboard();
         infowindow.open(map, this);
       });
     }
