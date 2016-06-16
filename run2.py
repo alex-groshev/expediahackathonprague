@@ -3,10 +3,40 @@ import json
 from flask import Flask, request, render_template, json, send_from_directory, Response
 import pymongo
 from pymongo import MongoClient
-from bson.son import SON
 import numpy as np
 from pandas import Series, DataFrame
 import pandas as pd
+import requests
+
+
+class UrlFactory:
+    def __init__(self, domain):
+        self.domain = domain
+
+    def url_promo_score(self, hotel_id):
+        return self.domain + '/promotions/v1/hotels/%s/promos?returnScore=true' % hotel_id
+
+    def url_top_pos(self, hotel_id):
+        return self.domain + '/top-tpids/lodgingSort/v1/hops/HopsTopTpidsAndRegions?hotelId=%s' % hotel_id
+
+
+def get_scores(hotel_id):
+    url_factory = UrlFactory('https://services.expediapartnercentral.com')
+    url = url_factory.url_promo_score(hotel_id=hotel_id)
+    response = requests.get(url, auth=('EQCRateGAIN','kaB7tRuP'))
+
+    page = json.loads(response.content)
+    scores = [float(rp['score']) for rp in page['Entity']]
+    percents = [float(rp['percent']) for rp in page['Entity']]
+
+    percents[0] = float(31)
+    percents[1] = float(32)
+    percents[2] = float(29)
+
+    return {
+        "scores": scores,
+        "percents": percents
+    }
 
 
 def get_db():
@@ -91,6 +121,11 @@ def stats_searchdate(hotelId, tpId, regionId, searchDate):
 
     return remove_u(str(result)).replace("'", '"')
 
+
+@app.route("/promos/<hotelId>")
+def promos(hotelId):
+    result = get_scores(long(hotelId))
+    return remove_u(str(result)).replace("'", '"')
 
 if __name__ == "__main__":
     app.run(debug=True)
