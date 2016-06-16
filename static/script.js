@@ -1,15 +1,25 @@
-/**
-$(document).ready(function () {
-	$(".wait").hide();
+
+//$(document).ready(function () {
+//	$(".wait").hide();
+//	$(".posContainer").hide();
+//	$(".valuesContainer").hide();
+//	$(".actionsContainer").hide();
+//	$("#output").hide();
+//
+//	drawPOS();
+//});
+
+
+
+function diplayDashboard() {
+	$(".wait").show();
 	$(".posContainer").hide();
 	$(".valuesContainer").hide();
 	$(".actionsContainer").hide();
 	$("#output").hide();
 
-	initialize();	
-//	drawPOS();
-});
-*/
+	drawPOS();
+}
 
 
 
@@ -86,10 +96,10 @@ function drawRate(posID, regionID, dateStr, btnOrder) {
 //			var jsonVL = JSON.parse(data);
 //			alert(JSON.stringify(jsonVL));
 			showData(JSON.parse(data));
-			
+
 			// display actions
 			$(".actionsContainer").show();
-			
+
 			// change selected btn
 			$(".POS_btn").each(function () {
 				$(this).removeClass("btn-primary");
@@ -289,7 +299,7 @@ function writePOSRow(posID, regionID, posName, regionName) {
 
 	string += "</td></tr>";
 
-    //console.log(string);
+	//console.log(string);
 
 	return string;
 }
